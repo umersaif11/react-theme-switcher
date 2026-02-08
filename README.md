@@ -1,16 +1,53 @@
-# React + Vite
+# React Theme Switcher 🌗
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A dynamic Light/Dark mode application built with React and Tailwind CSS. This project serves as a practical guide to **Global State Management**, featuring the Context API, custom hooks, and direct DOM manipulation for theming.
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Instant Theme Toggling:** Seamless switching between Light and Dark modes with a single click.
+- **Global State:** Manages the theme state across the entire application without prop drilling.
+- **Tailwind Integration:** Leverages Tailwind's `darkMode: 'class'` strategy to apply styles conditionally based on the HTML tag's class.
+- **Card Component:** A responsive UI card that adapts its colors, background, and text instantly based on the active theme.
 
-## React Compiler
+## 🛠️ Tech Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- **Library:** React JS
+- **State Management:** Context API
+- **Styling:** Tailwind CSS
+- **Build Tool:** Vite
 
-## Expanding the ESLint configuration
+## 🧠 Concepts & Hooks Used
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+This project was built to master the `useContext` hook and global state patterns. Here is how the core concepts are applied:
+
+- **`createContext`**: Used with **default values** (e.g., `{ themeMode: "light" }`). This provides better auto-completion (IntelliSense) in VS Code and acts as a safety net if the Provider is missing.
+- **`ThemeProvider`**: A wrapper component that broadcasts the current `themeMode` and the toggle functions (`darkTheme`, `lightTheme`) to the entire component tree.
+- **`useTheme`**: A custom hook created to wrap `useContext`. This simplifies imports in child components, allowing them to access theme data with one line of code.
+- **`useEffect`**: The bridge between React state and the browser DOM. It listens for changes in `themeMode` and updates the `<html>` tag's class list accordingly.
+- **`classList`**: Native JavaScript DOM manipulation (`document.querySelector('html').classList`) used inside the effect to physically add or remove the "dark" / "light" classes.
+- **`Tailwind Configuration`**: Configured `darkMode: "class"` in `tailwind.config.js` to instruct Tailwind to look for a class on the HTML tag rather than user system preferences.
+
+## 🖥️ Screenshots
+
+**Light Mode View**
+![Light Mode](./screenshots/light-mode.png)
+
+**Dark Mode View**
+![Dark Mode](./screenshots/dark-mode.png)
+
+## 💻 How to Run Locally
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/umersaif11/react-theme-switcher.git
+   ```
+
+2. Navigate to the project directory
+```bash
+   cd react-theme-switcher
+```    
+3. Start the development server
+```bash
+   npm run dev
+```  
+   
