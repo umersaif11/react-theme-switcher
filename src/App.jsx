@@ -1,5 +1,5 @@
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import { ThemeProvider } from './context/theme'
 
@@ -11,6 +11,12 @@ function App() {
   const darkTheme = () => {
     setThemeMode("dark")
   }
+
+  useEffect(() => {
+    let htmlClass = document.querySelector("html").classList
+    htmlClass.remove("light", "dark")
+    htmlClass.add(themeMode)
+  }, [themeMode])
 
   return (
     <ThemeProvider value={{themeMode, darkTheme, lightTheme}}>
